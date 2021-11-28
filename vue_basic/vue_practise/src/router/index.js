@@ -1,27 +1,32 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-
+import Login from '@/views/Login'
+import Main from '@/views/Main'
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
-    name: 'Home',
-    component: Home
+    path : '/',
+    redirect : '/login'
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
+  name: '登录',
+  path: '/login',
+  component: Login
+ },
+ {
+   name:'主页',
+   path:'/main',
+   component:Main
+ }
 ]
 
 const router = new VueRouter({
   routes
 })
 
+router.beforeEach(function(to,from,next){  //等有其他组件 来测试一哈
+  const itsToken = localStorage.getItem('a')
+  to.path ==='/login' ? next(): itsToken ? next() : next('/login')
+})
 export default router
