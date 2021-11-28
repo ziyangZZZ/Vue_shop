@@ -30,16 +30,17 @@ export default {
   data() {
     return {
       form: {
-        account:'',
-        pass: '',
+        account: "",
+        pass: "",
       },
       loginRules: {
-        account: [{ required: true, message: "账号不能为空", trigger: "blur" },
-                  { min:3,max:15,message:'账号长度有误',trigger:'blur'}
+        account: [
+          { required: true, message: "账号不能为空", trigger: "blur" },
+          { min: 3, max: 15, message: "账号长度有误", trigger: "blur" },
         ],
         pass: [
           { required: true, message: "密码不能为空", trigger: "blur" },
-          { min:6,max:16,message:'密码长度有误',trigger:'blur'}
+          { min: 6, max: 16, message: "密码长度有误", trigger: "blur" },
         ],
       },
     };
@@ -49,25 +50,49 @@ export default {
       // this.form.account = "";
       // this.form.pass = "";
       // console.log('this,',this);
-      this.$refs.loginRef.resetFields()
+      this.$refs.loginRef.resetFields();
     },
-    login() {
+    async login() {
       // if(this.form.account !== '' && this.form.pass !== ''){
       // localStorage.setItem('userAccount',this.form.account)
       // localStorage.setItem('userPass',this.form.pass)
       //   this.reset()
-      localStorage.setItem('a',1)
-      this.$refs.loginRef.validate((valid) => {
-        // console.log("valid", valid);
-        // this.$http.post or get('要求路径',this.form)
-        if(!valid){
-          this.$message.error('登录失败！')
-        }else{
-          this.$message.success('登录成功！')
-          this.$router.push('/main')
-        }
-        this.reset()
-      });
+      
+      //  this.$refs.loginRef.validate(valid=> {
+      //   // console.log("valid", valid);
+      //   // this.$http.post or get('要求路径',this.form)
+      //   if(!valid){
+      //     this.$message.error('登录失败！')
+      //   }else{
+      //     this.$message.success('登录成功！')
+      //     this.$router.push('/main')
+      //   }
+      //   this.reset()
+      // });
+      // *********************************
+      // let p = this.$refs.loginRef.validate();  //p =promise
+      // p.then(
+      //   () => {
+      //     this.$message.success("登录成功！");
+      //     this.$router.push("/main");
+      //   },
+      //   () => {
+      //     this.$message.error("登录失败！");
+      //   }
+      // );
+      // p.finally(() => {
+      //   this.reset();
+      // });
+      let a = await this.$refs.loginRef.validate();
+      // console.log('a',a);   a = boolean
+      if(a){
+        localStorage.setItem("a", 1);
+        this.$message.success("登录成功！");
+        this.$router.push("/main");
+      }else{
+        this.$message.error("登录失败！");
+      }
+      this.reset()
     },
   },
 };

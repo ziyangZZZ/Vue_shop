@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Login from '@/views/Login'
-import Main from '@/views/Main'
+import Button from '@/views/Button'
 Vue.use(VueRouter)
 
 const routes = [
@@ -17,7 +17,7 @@ const routes = [
  {
    name:'主页',
    path:'/main',
-   component:Main
+   component:Button
  }
 ]
 
