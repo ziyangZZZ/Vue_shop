@@ -88,7 +88,7 @@ export default {
       if(a){
         localStorage.setItem("a", 1);
         this.$message.success("登录成功！");
-        this.$router.push("/main");
+        this.$router.push("/main/welcome");
       }else{
         this.$message.error("登录失败！");
       }

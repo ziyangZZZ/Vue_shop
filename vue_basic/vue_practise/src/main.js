@@ -4,6 +4,7 @@ import router from './router'
 // import './plugins/element.js'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
+// import Normalize from 'Normalize'
 // 引入并配置axios
 import axios from 'axios'
 Vue.prototype.$http = axios
